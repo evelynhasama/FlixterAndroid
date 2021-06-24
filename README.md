@@ -24,7 +24,7 @@ The following **stretch** features are implemented:
 
 The following **additional** features are implemented:
 
-* [x] Allow the user to see the number of votes accompanying each rating from the details screen.
+* [x] Allow the user to see the movie's number of votes and release date from the details screen.
 
 ## Video Walkthrough
 
