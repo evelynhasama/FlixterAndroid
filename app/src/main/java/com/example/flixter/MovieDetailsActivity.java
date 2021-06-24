@@ -19,6 +19,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     TextView tvOverviewDetail;
     RatingBar rbVoteAverage;
     TextView tvVoteCount;
+    TextView tvReleaseDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         tvOverviewDetail = findViewById(R.id.tvOverviewDetail);
         rbVoteAverage = findViewById(R.id.rbVoteAverage);
         tvVoteCount = findViewById(R.id.tvVoteCount);
+        tvReleaseDate = findViewById(R.id.tvReleaseDate);
 
         // set the title and overview
         tvTitleDetail.setText(movie.getTitle());
@@ -42,5 +44,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         rbVoteAverage.setRating(voteAverage / 2.0f);
 
         tvVoteCount.setText(movie.getVoteCount() + " votes");
+
+        tvReleaseDate.setText("Released: " + movie.getReleaseDate());
     }
 }
