@@ -35,7 +35,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        getSupportActionBar().setTitle("Movie Details");
+        getSupportActionBar().setSubtitle("Movie Details");
+        getSupportActionBar().setTitle("Flixter");
 
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
         Log.d("MovieDetailsActivity", String.format("Showing details for '%s'", movie.getTitle()));

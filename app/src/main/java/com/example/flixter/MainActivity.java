@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        
-        getSupportActionBar().setTitle("Now Playing");
+        getSupportActionBar().setSubtitle("Now Playing");
+        getSupportActionBar().setTitle("Flixter");
 
         movies = new ArrayList<>();
 
@@ -75,4 +75,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
