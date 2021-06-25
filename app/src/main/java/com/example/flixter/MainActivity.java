@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.Headers;
 
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        getSupportActionBar().setSubtitle("Now Playing");
+        Objects.requireNonNull(getSupportActionBar()).setSubtitle("Now Playing");
         getSupportActionBar().setTitle("Flixter");
 
         movies = new ArrayList<>();
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     movies.addAll(Movie.fromJsonArray(results));
                     movieAdapter.notifyDataSetChanged();
                     Log.i(TAG, "Movies: " + movies.size());
+                    Objects.requireNonNull(getSupportActionBar()).setSubtitle("Now Playing: " + movies.size() + " movies");
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception", e);
                 }
