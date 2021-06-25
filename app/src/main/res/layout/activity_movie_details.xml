@@ -78,13 +78,30 @@
         android:textColor="@color/white"
         tools:text="Released: March 10, 2021" />
 
+    <TextView
+        android:id="@+id/tvTrailer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvOverviewDetail"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="false"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center_horizontal"
+        android:textColor="@color/teal_200"
+        android:textSize="20sp"
+        android:visibility="visible"
+        tools:text="Video Trailer" />
+
     <ImageView
         android:id="@+id/ivVideo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvOverviewDetail"
+        android:layout_below="@+id/tvTrailer"
         android:layout_alignParentStart="true"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginVertical="20dp"
+        android:layout_marginTop="5dp"
         app:srcCompat="@drawable/flicks_backdrop_placeholder" />
+
 </RelativeLayout>

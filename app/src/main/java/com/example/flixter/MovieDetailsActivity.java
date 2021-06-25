@@ -2,6 +2,7 @@ package com.example.flixter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,10 @@ import org.parceler.Parcels;
 
 import okhttp3.Headers;
 
+import static com.example.flixter.R.color.teal_200;
+import static com.example.flixter.R.color.white;
+import static com.example.flixter.R.string.*;
+
 public class MovieDetailsActivity extends AppCompatActivity {
 
     public static final String VIDEOS_URL_1 = "https://api.themoviedb.org/3/movie/";
@@ -38,13 +43,16 @@ public class MovieDetailsActivity extends AppCompatActivity {
     RatingBar rbVoteAverage;
     TextView tvVoteCount;
     TextView tvReleaseDate;
+    TextView tvTrailer;
 
     String youtubeKey;
     ImageView ivVideo;
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         youtubeKey = "";
 
@@ -52,6 +60,9 @@ public class MovieDetailsActivity extends AppCompatActivity {
         ActivityMovieDetailsBinding binding = ActivityMovieDetailsBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        tvTrailer = binding.tvTrailer;
+        tvTrailer.setText(" ");
 
         getSupportActionBar().setSubtitle("Movie Details");
         getSupportActionBar().setTitle("Flixter");
@@ -61,6 +72,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(VIDEOS_URL_1+movie.getId()+VIDEOS_URL_2, new JsonHttpResponseHandler() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onSuccess(int i, Headers headers, JSON json) {
                 Log.d(TAG, "onSuccess");
@@ -81,12 +93,25 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 } catch (JSONException jsonException) {
                     Log.e(TAG, "Hit json exception", jsonException);
                 }
+                if (youtubeKey.equals("")) {
+                    tvTrailer.setTextColor(getColor(white));
+                    tvTrailer.setText(getString(R.string.trailerunavailable));
+                    Log.d(TAG, "trailer unavailable");
+                } else {
+                    tvTrailer.setText(R.string.traileravailable);
+                    tvTrailer.setTextColor(getColor(teal_200));
+                    Log.d(TAG, "trailer available");
+                }
             }
 
             @Override
             public void onFailure(int i, Headers headers, String s, Throwable throwable) {
                 Log.d(TAG, "onFailure");
+                tvTrailer.setText(getString(R.string.trailerunavailable));
+                tvTrailer.setTextColor(getColor(R.color.white));
+                Log.d(TAG, "trailer unavailable");
             }
+
         });
 
         tvTitleDetail = binding.tvTitleDetail;
@@ -99,6 +124,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         // set the title and overview
         tvTitleDetail.setText(movie.getTitle());
         tvOverviewDetail.setText(movie.getOverview());
+
 
         // vote average is 0..10, convert to 0..5 by dividing by 2
         float voteAverage = movie.getVoteAverage().floatValue();
@@ -115,11 +141,12 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 .transform(new RoundedCorners(40))
                 .into(ivVideo);
 
+
         ivVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (youtubeKey == "") {
-                    Toast.makeText(MovieDetailsActivity.this, "No Video Available", Toast.LENGTH_LONG).show();
+                if (youtubeKey.equals("")) {
+                    Toast.makeText(MovieDetailsActivity.this, "No Trailer Available", Toast.LENGTH_LONG).show();
                 } else {
                     Intent intent = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
                     // serialize the movie using parceler, use its short name as a key
