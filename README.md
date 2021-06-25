@@ -2,7 +2,7 @@
 
 **Flixter** shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
 
-Time spent: **X** hours spent in total
+Time spent: **14** hours spent in total
 
 ## User Stories
 
@@ -24,20 +24,25 @@ The following **stretch** features are implemented:
 
 The following **additional** features are implemented:
 
-* [x] Allow the user to see the movie's number of votes and release date from the details screen.
-* [x] Allow users to see how many movies are Now Playing at the top of the main screen
+* [x] Allow the user to see the movie's number of votes, release date, backdrop image, and trailer availability from the details screen.
+* [x] Allow users to see how many movies are loaded at the top of the main screen
+* [x] Allow users to view movies coming soon to the United States by clicking the "Coming Soon" button  
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/evelynhasama/FlixterAndroid/blob/master/vertical_walkthrough.gif' title='Vertical Video Walkthrough' width='' alt='Vertical Video Walkthrough' />
+
+<img src='https://github.com/evelynhasama/FlixterAndroid/blob/master/horizontal_walkthrough.gif' title='Horizontal Video Walkthrough' width='' alt='Horizontal Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+- Incorprating the Youtube player view was initially challenging, as it was unlike any of the views/activities we had already implemented. However, I enjoyed this challenge and using the videos endpoint of the Movie Database API to get the Youtube Video key.
+- I also found adding Coming Soon movies really interesting because I was not sure how best to approach switching between Now Playing and Coming Soon movies with the single Recycler View. I ended up using two buttons and the Apache Commons Library to save which type of movies the user is viewing (so users can return to the same list of movies).
+
 
 ## Open-source libraries used
 
