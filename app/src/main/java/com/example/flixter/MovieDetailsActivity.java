@@ -132,7 +132,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         tvVoteCount.setText(movie.getVoteCount() + " votes");
 
-        tvReleaseDate.setText("Released: " + movie.getReleaseDate());
+        tvReleaseDate.setText("Release: " + movie.getReleaseDate());
 
         Glide.with(MovieDetailsActivity.this)
                 .load(movie.getBackdropPath())
